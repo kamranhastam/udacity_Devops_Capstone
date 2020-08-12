@@ -2,41 +2,73 @@
 
 ## Project Overview
 
-In this project, you will apply the skills you have acquired in this course to operationalize a Machine Learning Microservice API. 
-
-You are given a pre-trained, `sklearn` model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on [the data source site](https://www.kaggle.com/c/boston-housing). This project tests your ability to operationalize a Python flask app—in a provided file, `app.py`—that serves out predictions (inference) about housing prices through API calls. This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
+The project is to build a CICD pipeline that deploys an application (website) and publicly available. 
+I applied following skills and knowledge which was developed throughout Cloud DevOps ND program:
+Working in AWS
+Using Jenkins to implement Continuous Integration and Continuous Deployment
+Building pipelines
+Working with Ansible and CloudFormation to deploy clusters
+Building Kubernetes clusters
+Building Docker containers in pipelines
 
 ### Project Tasks
 
-Your project goal is to operationalize this working, machine learning microservice using [kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. In this project you will:
-* Test your project code using linting
-* Complete a Dockerfile to containerize this application
-* Deploy your containerized application using Docker and make a prediction
-* Improve the log statements in the source code for this application
-* Configure Kubernetes and create a Kubernetes cluster
-* Deploy a container using Kubernetes and make a prediction
-* Upload a complete Github repo with CircleCI to indicate that your code has been tested
+Step 1: Server Setup via CloudFormation
 
-You can find a detailed [project rubric, here](https://review.udacity.com/#!/rubrics/2576/view).
+Deploy a Jenkins Master Box
+Include Blue Ocean and AWS Plugins
+Deploy an EC2 Ubuntu Server to Deploy Code
+Clone GitHub Capstone Repo
+Build Docker Image and Test Python Flask Locally
+Deploy Amazon EKS Service and Cluster
 
-**The final implementation of the project will showcase your abilities to operationalize production microservices.**
+Step 2: Build Out Jenkins Pipeline
+Construct pipeline in GitHub Capstone Repo
+Ensure pipeline does the following:
+Lints Python and Dockerfile
+Scans Docker Image for Security
+Deploys Docker Image to Amazon ECR
+Sets Up / Exposes Kubernetes Pod to Port 8080
+Creates / Updates Pod with Rolling Builds
+You can find a detailed project rubric, here.
+https://review.udacity.com/#!/rubrics/2577/view
 
----
+The Final Implementation of this Capstone Project will Showcase Your Abilities to Perform DevOps in the Cloud.
 
-## Setup the Environment
+## Setup Environment
+#########################################################
+Test locally first before set up environment
+1.	Create the dockerfile that containarizes the website and test it locally in docker to make sure it works.
+2.	Create the kubernetes deployment and service files to deploy the application to the cluster
+3.	Run minikube to start the kubernetes cluster locally.
+4.	Deploy the deployments and services to the minikube kubernetes cluster locally. Test it and make sure that it works:
+https://www.youtube.com/watch?v=WeWv2Htb1-g&t=298s
+#########################################################
+Setup environment and Deploy the website
+Run the CloudFormation
+Build out the Jenkins Server
+Add Blue Ocean and AWS Plugins
+In Blue Ocean, Connect to GitHub Repo
+Add AWS Credentials for CLI Access
+Install PIP, PyLint, AWS CLI, and Kubectl Under Jenkins Account
+Build out the Dev Server
+Install AWS CLI
+Clone GitHub Repo
+Build Virtual Environment
+Validate / Test Code
 
-* Create a virtualenv and activate it
-* Run `make install` to install the necessary dependencies
+### Running Flask Application
+Running Flask Application and put Index.html in directory
+Run in Docker: ./run_docker.sh
+Run in Kubernetes: ./run_kubernetes.sh
 
-### Running `app.py`
+### Uploading to the Docker Hub
+Run ./upload_docker.sh to upload the api to the Docker Hub
 
-1. Standalone:  `python app.py`
-2. Run in Docker:  `./run_docker.sh`
-3. Run in Kubernetes:  `./run_kubernetes.sh`
+### Deploy the website
+Deploys Docker Image to Amazon ECR
+aws eks --region us-west-2 update-kubeconfig --name EKS-Name
+Sets Up / Exposes Kubernetes Pod to Port 8080
+Creates / Updates Pod with Rolling Builds
+kubectl apply -f deployment.yml
 
-### Kubernetes Steps
-
-* Setup and Configure Docker locally
-* Setup and Configure Kubernetes locally
-* Create Flask app in Container
-* Run via kubectl
