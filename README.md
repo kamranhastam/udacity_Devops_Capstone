@@ -71,4 +71,4 @@ aws eks --region us-west-2 update-kubeconfig --name EKS-Name
 Sets Up / Exposes Kubernetes Pod to Port 8080
 Creates / Updates Pod with Rolling Builds
 kubectl apply -f deployment.yml
-
+.....
