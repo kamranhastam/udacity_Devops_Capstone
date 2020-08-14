@@ -18,12 +18,13 @@ pipeline {
          }
          stage('Push Docker Image') {
               steps {
-                  withDockerRegistry([url: "", credentialsId: "docker-hub"]) {
+                  withDockerRegistry([url: "", credentialsId: "dockerhub"]) {
                       sh "docker tag webimage kamranhastam/dockerimage:webimage"
                       sh 'docker push kamranhastam/dockerimage:webimage'
                   }
               }
          }
+
          stage('Deploying') {
               steps{
                   echo 'Deploying to AWS...'
