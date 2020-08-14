@@ -28,7 +28,7 @@ pipeline {
          stage('Deploying') {
               steps{
                   echo 'Deploying to AWS...'
-                  withAWS(credentials: 'aws', region: 'us-west-2') {
+                  withAWS(credentials: 'aws-static', region: 'us-west-2') {
                       sh "aws eks --region us-west-2 update-kubeconfig --name capstonecluster"
                       sh "kubectl config use-context arn:aws:eks:us-west-2:244000766408:cluster/capstonecluster"
                       sh "kubectl set image deployments/webimage webimage=kamranhastam/dockerimage:webimage"
