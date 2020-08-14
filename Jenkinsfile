@@ -20,7 +20,7 @@ pipeline {
               steps {
                   withDockerRegistry([url: "", credentialsId: "dockerhub"]) {
                       sh "docker tag webimage kamranhastam/dockerimage:webimage"
-                      sh 'docker push kamranhastam/dockerimage:webimage'
+                      sh "docker push kamranhastam/dockerimage:webimage"
                   }
               }
          }
